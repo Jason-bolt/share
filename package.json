@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon app",
-    "prod": "cross-env NODE_ENV=production node app"
+    "tail_dev": "tailwindcss -i ./public/input.css -o ./public/output.css --watch",
+    "prod": "cross-env NODE_ENV=production node app",
+    "tail_prod": "tailwindcss -i ./public/input.css -o ./public/output.css"
   },
   "author": "Jason Kwame Appiatu",
   "license": "ISC",
