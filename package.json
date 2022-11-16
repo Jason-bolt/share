@@ -4,7 +4,8 @@
   "description": "A platform for Christians to share their testimonies to the public",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "cross-env NODE_ENV=development nodemon app",
+    "prod": "cross-env NODE_ENV=production node app"
   },
   "author": "Jason Kwame Appiatu",
   "license": "ISC",
