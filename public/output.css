@@ -587,6 +587,18 @@ video {
   margin-right: auto;
 }
 
+.mb-3 {
+  margin-bottom: 0.75rem;
+}
+
+.mt-0 {
+  margin-top: 0px;
+}
+
+.mb-0 {
+  margin-bottom: 0px;
+}
+
 .block {
   display: block;
 }
@@ -653,6 +665,68 @@ video {
 .bg-violet-800 {
   --tw-bg-opacity: 1;
   background-color: rgb(91 33 182 / var(--tw-bg-opacity));
+}
+
+.bg-indigo-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(49 46 129 / var(--tw-bg-opacity));
+}
+
+.bg-indigo-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 48 163 / var(--tw-bg-opacity));
+}
+
+.bg-gradient-to-r {
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
+.from-cyan-500 {
+  --tw-gradient-from: #06b6d4;
+  --tw-gradient-to: rgb(6 182 212 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.from-violet-900 {
+  --tw-gradient-from: #4c1d95;
+  --tw-gradient-to: rgb(76 29 149 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.from-indigo-900 {
+  --tw-gradient-from: #312e81;
+  --tw-gradient-to: rgb(49 46 129 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.from-purple-500 {
+  --tw-gradient-from: #a855f7;
+  --tw-gradient-to: rgb(168 85 247 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.to-violet-800 {
+  --tw-gradient-to: #5b21b6;
+}
+
+.to-violet-400 {
+  --tw-gradient-to: #a78bfa;
+}
+
+.to-purple-400 {
+  --tw-gradient-to: #c084fc;
+}
+
+.to-purple-500 {
+  --tw-gradient-to: #a855f7;
+}
+
+.to-purple-600 {
+  --tw-gradient-to: #9333ea;
+}
+
+.to-indigo-900 {
+  --tw-gradient-to: #312e81;
 }
 
 .p-5 {
@@ -822,6 +896,16 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.hover\:text-violet-800:hover {
+  --tw-text-opacity: 1;
+  color: rgb(91 33 182 / var(--tw-text-opacity));
+}
+
+.hover\:text-black:hover {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
 .hover\:underline:hover {
   text-decoration-line: underline;
 }
@@ -837,6 +921,10 @@ video {
 
   .md\:my-0 {
     margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  .md\:mb-0 {
     margin-bottom: 0px;
   }
 
@@ -877,6 +965,10 @@ video {
   .md\:bg-white {
     --tw-bg-opacity: 1;
     background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  }
+
+  .md\:bg-inherit {
+    background-color: inherit;
   }
 
   .md\:py-0 {
