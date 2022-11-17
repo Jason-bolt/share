@@ -1,6 +1,7 @@
 const express = require('express')
 const dotenv = require('dotenv')
 const path = require('path')
+const morgan = require('morgan')
 const handlebars = require('express-handlebars')
 // Routes
 const publicRoute = require('./routes/public')
@@ -16,17 +17,15 @@ app.use('/', publicRoute)
 
 // Handlebars
 app.engine('.hbs', handlebars.engine({
-    helpers: {
-        // formatDate,
-        // stripTags,
-        // truncate,
-        // editIcon,
-        // select
-    },
     extname: '.hbs',
-    // defaultLayout: 'main_template'
+    defaultLayout: 'main_layout'
 }))
 app.set('view engine', '.hbs')
+
+// Running logging
+if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'))
+}
 
 // Static folder
 app.use(express.static(path.join(__dirname, 'public')))
