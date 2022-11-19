@@ -23,6 +23,9 @@
 @media ( min-width: 1200px ) {
     .grid-col { width: 23.5%; }
     .grid-col--2, .grid-col--3 { display: block; }
+    .grid-col {
+        padding: 0 .5em;
+    }
 }
   
 @media ( min-width: 1440px ) {

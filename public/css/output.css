@@ -820,6 +820,10 @@ select {
   flex-direction: column;
 }
 
+.content-center {
+  align-content: center;
+}
+
 .items-center {
   align-items: center;
 }
@@ -830,6 +834,10 @@ select {
 
 .justify-between {
   justify-content: space-between;
+}
+
+.gap-4 {
+  gap: 1rem;
 }
 
 .space-y-5 > :not([hidden]) ~ :not([hidden]) {
@@ -1056,6 +1064,10 @@ select {
 
   .grid-col--2, .grid-col--3 {
     display: block;
+  }
+
+  .grid-col {
+    padding: 0 .5em;
   }
 }
 
