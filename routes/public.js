@@ -17,13 +17,19 @@ router.get('/register', (req, res) => {
 // @desc    Register user
 // @route   POST /register
 router.post('/register', (req, res) => {
-if (req.body.password === req.body.confirm_password){
-    // Hash password and create user
+    // Compare passwords
+    if (req.body.password !== req.body.confirm_password){
+        req.flash('message', 'Passwords do not match!')
+        res.redirect('/register')   
+    }
 
-}else{
-    req.flash('message', 'Wrong')
-    res.redirect('/register')
-}
+    // Check length
+    if (req.body.password.length < 6) {
+        req.flash('message', 'Password must be 8 or more characters long!')
+        res.redirect('/register')
+    }
+
+    // Hash password and create user
 })
 
 // @desc    Login page
