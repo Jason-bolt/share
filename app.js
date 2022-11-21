@@ -12,6 +12,9 @@ dotenv.config({ path: './config/config.env' })
 // Initializing app
 const app = express()
 
+// Parse body
+app.use(express.urlencoded({ extended: false }))
+
 // Routes implementation
 app.use('/', publicRoute)
 

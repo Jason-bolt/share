@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-
+const bcrypt = require('bcrypt')
 
 // @desc    Index page
 // @route   GET /
@@ -12,6 +12,12 @@ router.get('/', (req, res) => {
 // @route   GET /register
 router.get('/register', (req, res) => {
     res.render('register')
+})
+
+// @desc    Register user
+// @route   POST /register
+router.post('/register', (req, res) => {
+    console.log(req.body)
 })
 
 // @desc    Login page
