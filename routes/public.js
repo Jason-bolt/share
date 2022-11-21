@@ -17,7 +17,13 @@ router.get('/register', (req, res) => {
 // @desc    Register user
 // @route   POST /register
 router.post('/register', (req, res) => {
-    console.log(req.body)
+if (req.body.password === req.body.confirm_password){
+    // Hash password and create user
+
+}else{
+    req.flash('message', 'Wrong')
+    res.redirect('/register')
+}
 })
 
 // @desc    Login page

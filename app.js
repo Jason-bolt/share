@@ -3,6 +3,10 @@ const dotenv = require('dotenv')
 const path = require('path')
 const morgan = require('morgan')
 const handlebars = require('express-handlebars')
+const flash = require('connect-flash')
+const session = require('express-session')
+
+
 // Routes
 const publicRoute = require('./routes/public')
 
@@ -14,6 +18,23 @@ const app = express()
 
 // Parse body
 app.use(express.urlencoded({ extended: false }))
+
+// Session middleware
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    // store: MongoStore.create({ mongoUrl: process.env.MONGO_URI })
+}));
+
+// Flash messages
+app.use(flash())
+
+// Setting up flash
+app.use(function(req, res, next){
+    res.locals.message = req.flash();
+    next();
+});
 
 // Routes implementation
 app.use('/', publicRoute)
