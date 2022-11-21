@@ -9,7 +9,7 @@
 <body>
     
     <section class="conatiner mx-auto px-4 md:px-auto flex flex-col items-center justify-center h-screen">
-        {{#if message}}
+        {{#if message.error_message}}
             <p class="text-orange-700">
                 {{ message.error_message }}
             </p>

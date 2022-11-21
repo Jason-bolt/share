@@ -7,11 +7,17 @@
     <title>Share - Login</title>
 </head>
 <body>
-    <section class="conatiner mx-auto px-4 md:px-auto flex items-center justify-center h-screen">
-        {{#if message}}
-            <p class="text-green-700">
-                {{ message.sucess }}
-            </p>
+    <section class="conatiner mx-auto px-4 md:px-auto flex flex-col items-center justify-center h-screen">
+        {{#if message.success}}
+            <div class="flex space-x-2 px-4 py-2 mb-4 text-sm text-green-700 bg-green-100 rounded-lg items-center justify-center" role="alert">
+                <div class="text-lg pt-1">
+                        <ion-icon name="information-circle-outline"></ion-icon>
+                </div>
+                <span class="sr-only">Info</span>
+                <div>
+                    <span class="font-medium">{{ message.success }}</span> 
+                </div>
+            </div>
         {{/if}}
         <div class="border border-gray-200 shadow-md p-5 rounded flex flex-col space-y-7 md:w-2/4 lg:w-2/6 xl:max-w-lg">
             <div class="text-3xl text-violet-800 font-bold text-center underline">
@@ -40,10 +46,10 @@
         </div>
     </section>
 
-    <script>
+    {{!-- <script>
         if (message){
             alert(message.success)
         }
-    </script>
+    </script> --}}
 </body>
 </html>
