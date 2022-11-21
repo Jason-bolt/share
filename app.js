@@ -6,15 +6,16 @@ const handlebars = require('express-handlebars')
 const flash = require('connect-flash')
 const session = require('express-session')
 const connectDB = require('./config/db')
+const MongoStore = require('connect-mongo')
+
+// Load config variables
+dotenv.config({ path: './config/config.env' })
 
 // Connect Database
 connectDB()
 
 // Routes
 const publicRoute = require('./routes/public')
-
-// Load config variables
-dotenv.config({ path: './config/config.env' })
 
 // Initializing app
 const app = express()
