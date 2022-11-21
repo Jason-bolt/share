@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcrypt')
 const User = require('../models/User.ts')
+const passport = require('passport')
 
 // @desc    Index page
 // @route   GET /
@@ -59,5 +60,13 @@ router.post('/register', async (req, res) => {
 router.get('/login', (req, res) => {
     res.render('login')
 })
+
+// @desc    User login
+// @route   POST /login
+router.post('/login', passport.authenticate('local', { failureRedirect: '/login', failureFlash: true }),
+    (req, res) => {
+        res.render('dashboard')
+    }
+)
 
 module.exports = router

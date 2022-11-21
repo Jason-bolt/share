@@ -4,6 +4,7 @@ const path = require('path')
 const morgan = require('morgan')
 const handlebars = require('express-handlebars')
 const flash = require('connect-flash')
+const passport = require('passport')
 const session = require('express-session')
 const connectDB = require('./config/db')
 const MongoStore = require('connect-mongo')
@@ -13,6 +14,9 @@ dotenv.config({ path: './config/config.env' })
 
 // Connect Database
 connectDB()
+
+// Configure passport
+require('./config/passport')(passport)
 
 // Routes
 const publicRoute = require('./routes/public')
@@ -31,8 +35,13 @@ app.use(session({
     store: MongoStore.create({ mongoUrl: process.env.MONGO_URI })
 }));
 
+
 // Flash messages
 app.use(flash())
+
+// Registering passport
+app.use(passport.initialize())
+app.use(passport.session())
 
 // Setting up flash
 app.use(function(req, res, next){
