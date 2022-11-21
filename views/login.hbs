@@ -20,14 +20,14 @@
             </div>
         {{/if}}
         {{!-- Errors --}}
-        {{#if messages.error}}
+        {{#if message.error}}
             <div class="flex space-x-2 px-4 py-2 mb-4 text-sm text-red-700 bg-red-100 rounded-lg items-center justify-center" role="alert">
                 <div class="text-lg pt-1">
                         <ion-icon name="information-circle-outline"></ion-icon>
                 </div>
                 <span class="sr-only">Info</span>
                 <div>
-                    <span class="font-medium">{{ messages.error }}</span> 
+                    <span class="font-medium">{{ message.error }}</span> 
                 </div>
             </div>
         {{/if}}

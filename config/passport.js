@@ -9,25 +9,27 @@ module.exports = (passport) => {
         const user = await User.findOne({ email: email })
          
         if (!user){
-            return done(null, false, { message: "Incorrect email or password!" })
+            return done(null, false)
         }
 
         try {
             if (await bcrypt.compare(password, user.password)){
                 return done(null, user)
             }else{
-                return done(null, false, { message: "Incorrect email or password!" })
+                return done(null, false)
             }
         } catch (err) {
             return done(err)
         }
     }))
 
-    passport.serializeUser((user, done) => {
-        done(null, user)
-    })
+    passport.serializeUser( (user, done) => {
+        done(null, user.id);
+      })
     
-    passport.deserializeUser((user, done) => {
-        done(null, user)
-    })
+      passport.deserializeUser( (id, done) => {
+        User.findById(id, (error, user) => {
+          done(error, user);
+        })
+      })
 }

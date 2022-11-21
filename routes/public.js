@@ -63,10 +63,9 @@ router.get('/login', (req, res) => {
 
 // @desc    User login
 // @route   POST /login
-router.post('/login', passport.authenticate('local', { failureRedirect: '/login', failureFlash: true }),
-    (req, res) => {
-        res.render('dashboard')
-    }
-)
+router.post('/login', passport.authenticate('local', { failureRedirect: '/login',
+successRedirect: '/dashboard',
+failureFlash: 'Invalid username or password!'
+ }))
 
 module.exports = router
