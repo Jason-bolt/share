@@ -9,7 +9,7 @@ module.exports = {
     
     isNotAuthUser: (req, res, next) => {
         if (req.isAuthenticated()) {
-            res.redirect('/dashboard')
+            res.redirect('/testimonies')
         }else{
             return next()
         }

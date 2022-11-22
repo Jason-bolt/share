@@ -65,14 +65,16 @@ router.get('/login', isNotAuthUser, (req, res) => {
 // @desc    User login
 // @route   POST /login
 router.post('/login', isNotAuthUser, passport.authenticate('local', { failureRedirect: '/login',
-successRedirect: '/dashboard',
+successRedirect: '/testimonies',
 failureFlash: 'Invalid username or password!'
  }))
 
 // @desc    Dashboard
-// @route   GET /dashboard
-router.get('/dashboard', isAuthUser, (req, res) => {
-    res.render('dashboard')
+// @route   GET /testimonies
+router.get('/testimonies', isAuthUser, (req, res) => {
+    res.render('auth/testimonies', {
+        page: 'testimonies'
+    })
 })
 
 // @desc    Logout
