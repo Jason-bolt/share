@@ -7,7 +7,7 @@ const { isAuthUser, isNotAuthUser } = require('../middleware/auth')
 
 // @desc    Index page
 // @route   GET /
-router.get('/', (req, res) => {
+router.get('/', isNotAuthUser, (req, res) => {
     res.render('index')
 })
 
