@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/output.css">
-    <title>Testimony</title>
+    <title>SHARE</title>
 </head>
 <body>
     {{#if user}}
@@ -24,7 +24,10 @@
     <script>
         function Menu(e){
             let list = document.getElementById('nav-menu')
-            e.name === 'menu' ? (e.name = 'close', list.classList.add('top-[80px]'), list.classList.add('opacity-100')) : (e.name = 'menu', list.classList.remove('top-[80px]'), list.classList.remove('opacity-100'))
+
+            e.name === 'menu' ? (e.name = 'close', list.classList.remove('top-[-400px]'), list.classList.add('top-[78]'), list.classList.remove('opacity-0'), list.classList.add('opacity-100')) : (e.name = 'menu', list.classList.add('top-[-400px]'), list.classList.remove('top-[80px]'), list.classList.add('opacity-0'), list.classList.remove('opacity-100'))
+            
+           
         }
     </script>
 
