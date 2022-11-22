@@ -90,11 +90,11 @@ router.get('/profile', isAuthUser, (req, res) => {
         profile: true
     }
     
-    
     res.render('auth/profile', {
         page: page,
         user_name: req.user.name,
         user_email: req.user.email,
+        user_id: req.user._id
     })
 })
 
