@@ -1027,8 +1027,18 @@ select {
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
+.from-violet-800 {
+  --tw-gradient-from: #5b21b6;
+  --tw-gradient-to: rgb(91 33 182 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
 .to-violet-600 {
   --tw-gradient-to: #7c3aed;
+}
+
+.to-violet-500 {
+  --tw-gradient-to: #8b5cf6;
 }
 
 .p-2\.5 {
@@ -1090,6 +1100,16 @@ select {
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
 }
 
 .pl-3 {
