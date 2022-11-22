@@ -72,8 +72,13 @@ failureFlash: 'Invalid username or password!'
 // @desc    Dashboard
 // @route   GET /testimonies
 router.get('/testimonies', isAuthUser, (req, res) => {
+    page = {
+        testimonies: true,
+        profile: false
+    }
+    
     res.render('auth/testimonies', {
-        page: 'testimonies'
+        page: page
     })
 })
 
