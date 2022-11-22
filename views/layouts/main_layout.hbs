@@ -8,7 +8,11 @@
     <title>Testimony</title>
 </head>
 <body>
-    {{>_header}}
+    {{#if user}}
+        {{>_auth_header}}
+    {{else}}
+        {{>_header}}
+    {{/if}}
 
     {{{body}}}
 

@@ -53,7 +53,7 @@ app.use(passport.session())
 app.use(function(req, res, next){
     res.locals.message = req.flash();
     res.locals.user = req.user || null
-    res.next();
+    next();
 });
 
 // Routes implementation
