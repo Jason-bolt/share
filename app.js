@@ -23,6 +23,7 @@ require('./config/passport')(passport)
 
 // Routes
 const publicRoute = require('./routes/public')
+const errorRoute = require('./routes/errors')
 
 // Initializing app
 const app = express()
@@ -56,9 +57,6 @@ app.use(function(req, res, next){
     next();
 });
 
-// Routes implementation
-app.use('/', publicRoute)
-
 // Handlebars
 app.engine('.hbs', handlebars.engine({
     extname: '.hbs',
@@ -73,6 +71,10 @@ if (process.env.NODE_ENV === 'development') {
 
 // Static folder
 app.use(express.static(path.join(__dirname, 'public')))
+
+// Routes implementation
+app.use('/', publicRoute)
+app.use('/error', errorRoute)
 
 PORT = process.env.PORT || 3000
 
