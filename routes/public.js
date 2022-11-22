@@ -69,7 +69,7 @@ successRedirect: '/testimonies',
 failureFlash: 'Invalid username or password!'
  }))
 
-// @desc    Dashboard
+// @desc    All testimonies
 // @route   GET /testimonies
 router.get('/testimonies', isAuthUser, (req, res) => {
     page = {
@@ -78,6 +78,19 @@ router.get('/testimonies', isAuthUser, (req, res) => {
     }
     
     res.render('auth/testimonies', {
+        page: page
+    })
+})
+
+// @desc    Profile page
+// @route   GET /profile
+router.get('/profile', isAuthUser, (req, res) => {
+    page = {
+        testimonies: false,
+        profile: true
+    }
+    
+    res.render('auth/profile', {
         page: page
     })
 })
