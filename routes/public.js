@@ -3,6 +3,7 @@ const router = express.Router()
 const bcrypt = require('bcrypt')
 const User = require('../models/User.ts')
 const passport = require('passport')
+const { isAuthUser, isNotAuthUser } = require('../middleware/auth')
 
 // @desc    Index page
 // @route   GET /
@@ -12,13 +13,13 @@ router.get('/', (req, res) => {
 
 // @desc    Registration page
 // @route   GET /register
-router.get('/register', (req, res) => {
+router.get('/register', isNotAuthUser, (req, res) => {
     res.render('register')
 })
 
 // @desc    Register user
 // @route   POST /register
-router.post('/register', async (req, res) => {
+router.post('/register', isNotAuthUser, async (req, res) => {
     // Compare passwords
     if (req.body.password !== req.body.confirm_password){
         req.flash('error_message', 'Passwords do not match!')
@@ -57,15 +58,31 @@ router.post('/register', async (req, res) => {
 
 // @desc    Login page
 // @route   GET /login
-router.get('/login', (req, res) => {
+router.get('/login', isNotAuthUser, (req, res) => {
     res.render('login')
 })
 
 // @desc    User login
 // @route   POST /login
-router.post('/login', passport.authenticate('local', { failureRedirect: '/login',
+router.post('/login', isNotAuthUser, passport.authenticate('local', { failureRedirect: '/login',
 successRedirect: '/dashboard',
 failureFlash: 'Invalid username or password!'
  }))
+
+// @desc    Dashboard
+// @route   GET /dashboard
+router.get('/dashboard', isAuthUser, (req, res) => {
+    res.render('dashboard')
+})
+
+// @desc    Logout
+// @route   DELETE /logout
+router.delete('/logout', isAuthUser, (req, res, next) => {
+    req.logout((err) => {
+        if (err) { return next(err); }
+        res.redirect('/login');
+    })
+})
+
 
 module.exports = router

@@ -8,6 +8,9 @@ const passport = require('passport')
 const session = require('express-session')
 const connectDB = require('./config/db')
 const MongoStore = require('connect-mongo')
+const methodOverride = require('method-override')
+
+
 
 // Load config variables
 dotenv.config({ path: './config/config.env' })
@@ -23,6 +26,9 @@ const publicRoute = require('./routes/public')
 
 // Initializing app
 const app = express()
+
+// Override POST method
+app.use(methodOverride('_method'))
 
 // Parse body
 app.use(express.urlencoded({ extended: false }))
