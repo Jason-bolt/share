@@ -49,10 +49,11 @@ app.use(flash())
 app.use(passport.initialize())
 app.use(passport.session())
 
-// Setting up flash
+// Setting up global variables
 app.use(function(req, res, next){
     res.locals.message = req.flash();
-    next();
+    res.locals.user = req.user || null
+    res.next();
 });
 
 // Routes implementation
