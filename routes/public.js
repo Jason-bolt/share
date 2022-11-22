@@ -98,6 +98,30 @@ router.get('/profile', isAuthUser, (req, res) => {
     })
 })
 
+// @desc    Edit profile
+// @route   PUT /profile/edit/:id
+router.put('/profile/edit/:id', isAuthUser, async (req, res) => {
+    const user_id = req.params.id
+    try {
+        await User.findOneAndUpdate(
+            { _id: req.params.id },
+            {
+                email: req.body.email,
+                name: req.body.name,
+            }
+        )
+    } catch (err) {
+        console.error(err)
+    }
+    
+    page = {
+        testimonies: false,
+        profile: true
+    }
+    
+    res.redirect('/profile')
+})
+
 // @desc    Logout
 // @route   DELETE /logout
 router.delete('/logout', isAuthUser, (req, res, next) => {
