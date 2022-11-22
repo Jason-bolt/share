@@ -111,6 +111,7 @@ router.put('/profile/edit/:id', isAuthUser, async (req, res) => {
             }
         )
     } catch (err) {
+        res.render('errors/500')
         console.error(err)
     }
     
