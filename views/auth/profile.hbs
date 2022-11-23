@@ -120,10 +120,13 @@
                             </span>
                         </label>
                         <small class="text-violet-800">Separate tags with commas</small>
-                        <input type="text" id="tags" name="tags" class="rounded border border-gray-300 focus:border-violet-800" placeholder="Maximum of 6 tags">
-                        <div class="flex flex-row space-x-2">
-                            <div class="tag"></div>
-                        </div>
+                        
+                        <select name="tags[]" class="tags rounded border border-gray-300 focus:border-violet-800" multiple>
+                            <option value="Faithful">Faithful</option>
+                            <option value="Gracious">Gracious</option>
+                            <option value="Provider">Provider</option>
+                        </select>
+                        
                     </div>
                     
                     <button class="bg-violet-800 rounded-full text-white py-2 mt-8 mb-2">
@@ -211,6 +214,10 @@
 </section>
 
 <script>
+    $(document).ready(function() {
+        $('.tags').select2();
+    });
+    
     function showInfo(){
         const info = document.querySelector('#info')
         info.classList.toggle('hidden')
