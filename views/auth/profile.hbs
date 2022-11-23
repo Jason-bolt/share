@@ -16,7 +16,7 @@
                 <p>{{user_email}}</p>
             </div>
             <div>
-                <button class="text-sm text-white bg-gradient-to-r from-violet-800 to-violet-500 px-3 py-1 rounded flex items-center justify-center" type="button" data-modal-toggle="defaultModal">
+                <button class="text-sm text-white bg-gradient-to-r from-violet-800 to-violet-500 px-3 py-1 rounded flex items-center justify-center" type="button" data-modal-toggle="editProfile">
                     <span class="pr-1">Edit</span> <ion-icon name="pencil"></ion-icon>
                 </button>
                 
@@ -27,7 +27,7 @@
 
 
 <!-- Edit profile modal -->
-<div id="defaultModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 p-4 w-full md:inset-0 h-modal md:h-full">
+<div id="editProfile" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 p-4 w-full md:inset-0 h-modal md:h-full">
     <div class="relative w-full max-w-2xl h-full md:h-auto">
         <!-- Modal content -->
         <div class="relative bg-white rounded-lg shadow">
@@ -36,7 +36,7 @@
                 <h3 class="text-xl font-semibold text-violet-800">
                     Edit name or email
                 </h3>
-                <button type="button" class="text-violet-800 text-xl hover:bg-violet-800 hover:text-white rounded-full p-1.5 ml-auto inline-flex items-center" data-modal-toggle="defaultModal">
+                <button type="button" class="text-violet-800 text-xl hover:bg-violet-800 hover:text-white rounded-full p-1.5 ml-auto inline-flex items-center" data-modal-toggle="editProfile">
                     <ion-icon name="close"></ion-icon>
                     <span class="sr-only">Close modal</span>
                 </button>
@@ -75,24 +75,65 @@
 {{!-- My testimonies --}}
 <section class="py-10">
     <div class="container mx-auto px-4 md:px-auto">
+        <button class="px-3 py-1 my-3 rounded text-white bg-gradient-to-r from-violet-800 to-violet-600" type="button" data-modal-toggle="addTestimony">
+            Add a testimony
+        </button>
+    </div>
+</section>
+
+<!-- Add testimony modal -->
+<div id="addTestimony" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 p-4 w-full md:inset-0 h-modal md:h-full">
+    <div class="relative w-full max-w-2xl h-full md:h-auto">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow">
+            <!-- Modal header -->
+            <div class="flex justify-between items-center p-4 rounded-t md:items-start ">
+                <h3 class="text-xl font-semibold text-violet-800">
+                    Add a testimony
+                </h3>
+                <button type="button" class="text-violet-800 text-xl hover:bg-violet-800 hover:text-white rounded-full p-1.5 ml-auto inline-flex items-center" data-modal-toggle="addTestimony">
+                    <ion-icon name="close"></ion-icon>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <div class="px-6 pb-6 space-y-6">
+                <form action="/testimony/add" method="POST" class="flex flex-col text-center md:text-left">
+                
+                    <div class="flex flex-col my-2">
+                        <label for="testimony">
+                            Testimony
+                        </label>
+                        <textarea name="testimony" id="testimony" rows="10" class="rounded border border-gray-300 focus:border-violet-800"></textarea>
+                    </div>
+
+                    <div class="flex flex-col my-2">
+                        <label for="email">
+                            Email
+                        </label>
+                        <input type="email" id="email" name="email" class="rounded border border-gray-300 focus:border-violet-800" value="{{ user_email }}">
+                    </div>
+                    
+                    <button class="bg-violet-800 rounded-full text-white py-2 mt-4 mb-2">
+                        Add
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{{!-- My testimonies list --}}
+<section class="py-1">
+    <div class="container mx-auto px-4 md:px-auto">
+
         <h1 class="text-2xl text-violet-800 font-bold">
             My testimonies
         </h1>
 
-        <button class="px-3 py-1 my-3 rounded text-white bg-gradient-to-r from-violet-800 to-violet-600">
-            Add a testimony
-        </button>
-        
-    </div>
-</section>
-
-
-{{!-- My testimonies list --}}
-<section class="pb-10">
-    <div class="container mx-auto px-4 md:px-auto">
-
         <div class="flex items-center justify-center md:justify-start">
-            <div class="grid py-10 gap-4 content-center">
+            <div class="grid pb-10 gap-4 content-center">
                 {{!-- Columns --}}
                 <div class="grid-col grid-col--1"></div>
                 <div class="grid-col grid-col--2"></div>
