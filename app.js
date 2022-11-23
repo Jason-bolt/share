@@ -24,6 +24,7 @@ require('./config/passport')(passport)
 // Routes
 const publicRoute = require('./routes/public')
 const errorRoute = require('./routes/errors')
+const testimonyRoute = require('./routes/testimonies')
 
 // Initializing app
 const app = express()
@@ -75,6 +76,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 // Routes implementation
 app.use('/', publicRoute)
 app.use('/error', errorRoute)
+app.use('/testimony', testimonyRoute)
 
 PORT = process.env.PORT || 3000
 
