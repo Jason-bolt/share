@@ -8,9 +8,7 @@ const TestimonySchema = new mongoose.Schema({
     },
     
     tags: {
-        tag: {
-            type: String,
-        }
+        type: Object
     },
 
     user: {

@@ -108,13 +108,25 @@
                     </div>
 
                     <div class="flex flex-col my-2">
-                        <label for="tag">
-                            Tags
+                        <label for="tag relative">
+                            Tags 
+
+                            {{!-- Instruction for tags --}}
+                            <div id="info" class="absolute bg-gray-200 p-1 hidden text-xs text-gray-600 bottom-48 rounded md:bottom-44 md:left-20">Tags are attributes of God you have witnessed. e.g: Healer, Merciful, Provider, etc.</div>
+
+                            {{!-- Button to toggle display of info --}}
+                            <span onclick="showInfo()" title="Click for more info" class="cursor-pointer text-violet-800 hover:text-violet-600">
+                                <ion-icon name="alert-circle-outline" style="pointer-events:none"></ion-icon>
+                            </span>
                         </label>
-                        <input type="text" id="tagInput" name="tagInput" class="rounded border border-gray-300 focus:border-violet-800">
+                        <small class="text-violet-800">Separate tags with commas</small>
+                        <input type="text" id="tags" name="tags" class="rounded border border-gray-300 focus:border-violet-800" placeholder="Maximum of 6 tags">
+                        <div class="flex flex-row space-x-2">
+                            <div class="tag"></div>
+                        </div>
                     </div>
                     
-                    <button class="bg-violet-800 rounded-full text-white py-2 mt-4 mb-2">
+                    <button class="bg-violet-800 rounded-full text-white py-2 mt-8 mb-2">
                         Add
                     </button>
                 </form>
@@ -197,3 +209,10 @@
         </div>
     </div>
 </section>
+
+<script>
+    function showInfo(){
+        const info = document.querySelector('#info')
+        info.classList.toggle('hidden')
+    }
+</script>
