@@ -119,7 +119,7 @@ router.put('/profile/edit/:id', isAuthUser, async (req, res) => {
         testimonies: false,
         profile: true
     }
-    
+    req.flash('success', 'Profile data updated!')
     res.redirect('/profile')
 })
 
