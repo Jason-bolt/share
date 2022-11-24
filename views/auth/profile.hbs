@@ -158,112 +158,106 @@
             My testimonies
         </h1>
 
+        <div class="flex items-center justify-center md:justify-start">
+            <div class="grid pb-10 gap-4 content-center">
+                {{!-- Columns --}}
+                <div class="grid-col grid-col--1"></div>
+                <div class="grid-col grid-col--2"></div>
+                <div class="grid-col grid-col--3"></div>
+                {{!-- <div class="grid-col grid-col--4"></div> --}}
+
         {{#if testimonies}}
             {{#each testimonies}}
-                <div class="flex items-center justify-center md:justify-start">
-                    <div class="grid pb-10 gap-4 content-center">
-                        {{!-- Columns --}}
-                        <div class="grid-col grid-col--1"></div>
-                        <div class="grid-col grid-col--2"></div>
-                        <div class="grid-col grid-col--3"></div>
-                        {{!-- <div class="grid-col grid-col--4"></div> --}}
+                {{!-- Content --}}
+                <div class="grid-item">
+                    <div class="block bg white border borer-gray-200 shadow p-5 max-w-md">
+                        <div class="flex flex-col space-y-5">
 
-                        {{!-- Content --}}
-                        <div class="grid-item">
-                            <div class="block bg white border borer-gray-200 shadow p-5 max-w-md">
-                                <div class="flex flex-col space-y-5">
-
-                                    <div class="flex flex-col relative">
-                                        
-                                        {{!-- Edit button --}}
-                                        <div class="absolute bg-violet-800 py-1 px-2 right-0 top-[-10] rounded-full text-white text-xl cursor-pointer" title="Edit testimony" data-modal-toggle="editTestimony">
-                                            <ion-icon name="create-outline" style="pointer-events:none"></ion-icon>
-                                        </div>
-                                        
-                                        <p class="text-xl"><strong>{{ user.name }}</strong></p>
-                                        <small class="text-gray-500">{{ formatDate createdAt 'Do MMMM YYYY' }}</small>
-                                    </div>
-                                    <p class="text-gray-700">
-                                        {{ testimony }}
-                                    </p>
-                                    <div class="flex flex-row space-x-3">
-                                        <small>
-                                            {{#each tags}}
-                                                <button class="border border-gray-200 bg-gray-100 px-3 my-1 rounded-full text-gray-500">{{this}}</button>
-                                            {{/each}}
-                                        </small>
-                                    </div>
+                            <div class="flex flex-col relative">
+                                
+                                {{!-- Edit button --}}
+                                <div class="absolute bg-violet-800 py-1 px-2 right-0 top-[-10] rounded-full text-white text-xl cursor-pointer" title="Edit testimony" data-modal-toggle="editTestimony">
+                                    <ion-icon name="create-outline" style="pointer-events:none"></ion-icon>
                                 </div>
+                                
+                                <p class="text-xl"><strong>{{ user.name }}</strong></p>
+                                <small class="text-gray-500">{{ formatDate createdAt 'Do MMMM YYYY' }}</small>
+                            </div>
+                            <p class="text-gray-700">
+                                {{ testimony }}
+                            </p>
+                            <div class="flex flex-row space-x-3">
+                                <small>
+                                    {{#each tags}}
+                                        <button class="border border-gray-200 bg-gray-100 px-3 my-1 rounded-full text-gray-500">{{this}}</button>
+                                    {{/each}}
+                                </small>
                             </div>
                         </div>
-
-
-                        <!-- Edit testimony modal -->
-                        <div id="editTestimony" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 p-4 w-full md:inset-0 h-modal md:h-full">
-                            <div class="relative w-full max-w-2xl h-full md:h-auto">
-                                <!-- Modal content -->
-                                <div class="relative bg-white rounded-lg shadow">
-                                    <!-- Modal header -->
-                                    <div class="flex justify-between items-center p-4 rounded-t md:items-start ">
-                                        <h3 class="text-xl font-semibold text-violet-800">
-                                            Edit testimony
-                                        </h3>
-                                        <button type="button" class="text-violet-800 text-xl hover:bg-violet-800 hover:text-white rounded-full p-1.5 ml-auto inline-flex items-center" data-modal-toggle="editTestimony">
-                                            <ion-icon name="close"></ion-icon>
-                                            <span class="sr-only">Close modal</span>
-                                        </button>
-                                    </div>
-                                    <!-- Modal body -->
-                                    <div class="px-6 pb-6 space-y-6">
-                                        <form action="/testimony/add" id="testimonyForm" method="POST" class="flex flex-col text-center md:text-left">
-                                        
-                                            <div class="flex flex-col my-2">
-                                                <label for="testimony" class="py-2">
-                                                    Testimony
-                                                </label>
-                                                <textarea name="testimony" id="testimony" rows="10" class="rounded border border-gray-300 focus:border-violet-800"></textarea>
-                                            </div>
-
-                                            <div class="flex flex-col my-2">
-                                                <label for="tag">
-                                                    Tags 
-                                                </label>        
-
-                                                <small class="text-red-700 text-center md:text-left">Leave this field blank if you want to use previous values</small>
-                                                
-                                                <select name="tags" class="tags rounded border border-gray-300 focus:border-violet-800" multiple>
-                                                    <option value="Faithful" selected>Faithful</option>
-                                                    <option value="Gracious">Gracious</option>
-                                                    <option value="Provider">Provider</option>
-                                                </select>
-                                                
-                                            </div>
-                                            
-                                            <button class="bg-violet-800 rounded-full text-white py-2 mt-8 mb-2">
-                                                Update
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        {{!-- TODO: Fix the display issue --}}
-                        <div class="grid-item invisible">
-                            <div class="block bg white border borer-gray-200 shadow p-5 max-w-md">
-                                <div class="flex flex-col space-y-5">
-                                    <div class="flex flex-col">
-                                        <p class="text-xl"><strong>Jason Kwame Appiatu</strong></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
                     </div>
                 </div>
+
+
+                <!-- Edit testimony modal -->
+                <div id="editTestimony" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 p-4 w-full md:inset-0 h-modal md:h-full">
+                    <div class="relative w-full max-w-2xl h-full md:h-auto">
+                        <!-- Modal content -->
+                        <div class="relative bg-white rounded-lg shadow">
+                            <!-- Modal header -->
+                            <div class="flex justify-between items-center p-4 rounded-t md:items-start ">
+                                <h3 class="text-xl font-semibold text-violet-800">
+                                    Edit testimony
+                                </h3>
+                                <button type="button" class="text-violet-800 text-xl hover:bg-violet-800 hover:text-white rounded-full p-1.5 ml-auto inline-flex items-center" data-modal-toggle="editTestimony">
+                                    <ion-icon name="close"></ion-icon>
+                                    <span class="sr-only">Close modal</span>
+                                </button>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="px-6 pb-6 space-y-6">
+                                <form action="/testimony/add" id="testimonyForm" method="POST" class="flex flex-col text-center md:text-left">
+                                
+                                    <div class="flex flex-col my-2">
+                                        <label for="testimony" class="py-2">
+                                            Testimony
+                                        </label>
+                                        <textarea name="testimony" id="testimony" rows="10" class="rounded border border-gray-300 focus:border-violet-800"></textarea>
+                                    </div>
+
+                                    <div class="flex flex-col my-2">
+                                        <label for="tag">
+                                            Tags 
+                                        </label>        
+
+                                        <small class="text-red-700 text-center md:text-left">Leave this field blank if you want to use previous values</small>
+                                        
+                                        <select name="tags" class="tags rounded border border-gray-300 focus:border-violet-800" multiple>
+                                            <option value="Faithful" selected>Faithful</option>
+                                            <option value="Gracious">Gracious</option>
+                                            <option value="Provider">Provider</option>
+                                        </select>
+                                        
+                                    </div>
+                                    
+                                    <button class="bg-violet-800 rounded-full text-white py-2 mt-8 mb-2">
+                                        Update
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                        
             {{/each}}
+            <div class="grid-item invisible">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, odio.
+            </div>
+            <div class="grid-item invisible">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, vel.
+            </div>
         {{else}}
+            </div>
+        </div>
             <p>No testimonies have been added yet.</p>
         {{/if}}
 

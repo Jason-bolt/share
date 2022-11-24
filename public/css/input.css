@@ -8,6 +8,7 @@
 
 .grid-item {
     padding: 10px 0;
+    /* min-width: 400px; */
 }
 
 .grid-col {
@@ -24,7 +25,7 @@
     .grid-col--2 { display: block; }
 }
 
-@media ( min-width: 1200px ) {
+@media ( min-width: 1400px ) {
     .grid-col { width: 23.5%; }
     .grid-col--2, .grid-col--3 { display: block; }
     .grid-col {

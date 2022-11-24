@@ -760,6 +760,10 @@ select {
   bottom: 12rem;
 }
 
+.top-\[-10\] {
+  top: -10;
+}
+
 .top-\[-400px\] {
   top: -400px;
 }
@@ -770,10 +774,6 @@ select {
 
 .top-\[80px\] {
   top: 80px;
-}
-
-.top-\[-10\] {
-  top: -10;
 }
 
 .z-50 {
@@ -848,14 +848,6 @@ select {
   margin-top: 2.5rem;
 }
 
-.ml-4 {
-  margin-left: 1rem;
-}
-
-.mb-\[-2\] {
-  margin-bottom: -2;
-}
-
 .block {
   display: block;
 }
@@ -902,19 +894,6 @@ select {
 
 .w-5 {
   width: 1.25rem;
-}
-
-.min-w-fit {
-  min-width: -moz-fit-content;
-  min-width: fit-content;
-}
-
-.min-w-\[1\/2\] {
-  min-width: 1/2;
-}
-
-.min-w-full {
-  min-width: 100%;
 }
 
 .max-w-md {
@@ -1149,14 +1128,14 @@ select {
   padding-bottom: 0.25rem;
 }
 
-.px-5 {
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-}
-
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+
+.px-5 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }
 
 .pl-3 {
@@ -1345,6 +1324,7 @@ select {
 
 .grid-item {
   padding: 10px 0;
+  /* min-width: 400px; */
 }
 
 .grid-col {
@@ -1366,7 +1346,7 @@ select {
   }
 }
 
-@media ( min-width: 1200px ) {
+@media ( min-width: 1400px ) {
   .grid-col {
     width: 23.5%;
   }
@@ -1526,12 +1506,6 @@ select {
     --tw-space-x-reverse: 0;
     margin-right: calc(2.5rem * var(--tw-space-x-reverse));
     margin-left: calc(2.5rem * calc(1 - var(--tw-space-x-reverse)));
-  }
-
-  .md\:space-x-4 > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-x-reverse: 0;
-    margin-right: calc(1rem * var(--tw-space-x-reverse));
-    margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
   }
 
   .md\:py-0 {
