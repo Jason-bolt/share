@@ -9,7 +9,8 @@ const session = require('express-session')
 const connectDB = require('./config/db')
 const MongoStore = require('connect-mongo')
 const methodOverride = require('method-override')
-
+// Handlebars helpers
+const { formatDate } = require('./helpers/hbs')
 
 
 // Load config variables
@@ -60,6 +61,9 @@ app.use(function(req, res, next){
 
 // Handlebars
 app.engine('.hbs', handlebars.engine({
+    helpers: {
+        formatDate
+    },
     extname: '.hbs',
     defaultLayout: 'main_layout'
 }))

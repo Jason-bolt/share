@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcrypt')
 const User = require('../models/User.ts')
+const Testimonies = require('../models/Testimony.ts')
 const passport = require('passport')
 const { isAuthUser, isNotAuthUser } = require('../middleware/auth')
 
@@ -84,17 +85,22 @@ router.get('/testimonies', isAuthUser, (req, res) => {
 
 // @desc    Profile page
 // @route   GET /profile
-router.get('/profile', isAuthUser, (req, res) => {
+router.get('/profile', isAuthUser, async (req, res) => {
     page = {
         testimonies: false,
         profile: true
     }
+
+    const testimonies = await Testimonies.find({ user: req.user._id })
+    .populate('user')
+    .lean()
     
     res.render('auth/profile', {
         page: page,
         user_name: req.user.name,
         user_email: req.user.email,
-        user_id: req.user._id
+        user_id: req.user._id,
+        testimonies: testimonies
     })
 })
 
