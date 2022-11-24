@@ -29,4 +29,18 @@ router.post('/add', isAuthUser, async (req, res) => {
 })
 
 
+// @desc    Submitting submitting testimony
+// @route   POST /testimony/add
+router.delete('/:id', isAuthUser, async (req, res) => {
+    try {
+        await Testimony.remove({ _id: req.params.id })
+    } catch (err) {
+        res.render('errors/500')
+        console.error(err)
+    }
+    req.flash('success', 'Testimony deleted successfully!')
+    res.redirect('/profile')
+})
+
+
 module.exports = router
