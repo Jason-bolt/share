@@ -109,7 +109,7 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <div class="px-6 pb-6 space-y-6">
+            <div class="px-6 pb-6">
                 <form action="/testimony/add" id="testimonyForm" method="POST" class="flex flex-col text-center md:text-left">
                 
                     <div class="flex flex-col my-2">
@@ -176,7 +176,7 @@
                             <div class="flex flex-col relative">
                                 
                                 {{!-- Edit button --}}
-                                <div class="absolute bg-violet-800 py-1 px-2 right-0 top-[-10] rounded-full text-white text-xl cursor-pointer" title="Edit testimony" data-modal-toggle="editTestimony">
+                                <div class="absolute bg-violet-800 py-1 px-2 right-0 top-[-10] rounded-full text-white text-xl cursor-pointer" title="Edit testimony" data-modal-toggle="editTestimony{{_id}}">
                                     <ion-icon name="create-outline" style="pointer-events:none"></ion-icon>
                                 </div>
                                 
@@ -199,7 +199,7 @@
 
 
                 <!-- Edit testimony modal -->
-                <div id="editTestimony" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 p-4 w-full md:inset-0 h-modal md:h-full">
+                <div id="editTestimony{{_id}}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 p-4 w-full md:inset-0 h-modal md:h-full">
                     <div class="relative w-full max-w-2xl h-full md:h-auto">
                         <!-- Modal content -->
                         <div class="relative bg-white rounded-lg shadow">
@@ -208,39 +208,41 @@
                                 <h3 class="text-xl font-semibold text-violet-800">
                                     Edit testimony
                                 </h3>
-                                <button type="button" class="text-violet-800 text-xl hover:bg-violet-800 hover:text-white rounded-full p-1.5 ml-auto inline-flex items-center" data-modal-toggle="editTestimony">
+                                <button type="button" class="text-violet-800 text-xl hover:bg-violet-800 hover:text-white rounded-full p-1.5 ml-auto inline-flex items-center" data-modal-toggle="editTestimony{{id}}">
                                     <ion-icon name="close"></ion-icon>
                                     <span class="sr-only">Close modal</span>
                                 </button>
                             </div>
                             <!-- Modal body -->
-                            <div class="px-6 pb-6 space-y-6">
+                            <div class="px-6 pb-6">
                                 <form action="/testimony/add" id="testimonyForm" method="POST" class="flex flex-col text-center md:text-left">
                                 
                                     <div class="flex flex-col my-2">
                                         <label for="testimony" class="py-2">
                                             Testimony
                                         </label>
-                                        <textarea name="testimony" id="testimony" rows="10" class="rounded border border-gray-300 focus:border-violet-800"></textarea>
+                                        <textarea name="testimony" id="testimony" rows="10" class="rounded border border-gray-300 focus:border-violet-800">{{testimony}}</textarea>
                                     </div>
 
                                     <div class="flex flex-col my-2">
                                         <label for="tag">
                                             Tags 
                                         </label>        
-
-                                        <small class="text-red-700 text-center md:text-left">Leave this field blank if you want to use previous values</small>
-                                        
                                         <select name="tags" class="tags rounded border border-gray-300 focus:border-violet-800" multiple>
-                                            <option value="Faithful" selected>Faithful</option>
-                                            <option value="Gracious">Gracious</option>
-                                            <option value="Provider">Provider</option>
+                                            <option value="Faithful" {{selectIncluded "Faithful" tags}}>Faithful</option>
+                                            <option value="Gracious" {{selectIncluded "Gracious" tags}}>Gracious</option>
+                                            <option value="Provider" {{selectIncluded "Provider" tags}}>Provider</option>
                                         </select>
                                         
                                     </div>
                                     
-                                    <button class="bg-violet-800 rounded-full text-white py-2 mt-8 mb-2">
+                                    <button type="submit" class="bg-violet-800 rounded-full text-white py-2 mt-8 mb-2">
                                         Update
+                                    </button>
+                                </form>
+                                <form action="/testimony/{{_id}}?_method=DELETE" method="POST">
+                                    <button type="submit" class="bg-white border border-red-700 rounded-full items-center w-full justify-center text-red-700 px-5 flex py-2">
+                                        Delete
                                     </button>
                                 </form>
                             </div>
@@ -249,6 +251,7 @@
                 </div>
                         
             {{/each}}
+            {{!-- Block to display grid well --}}
             <div class="grid-item invisible">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, odio.
             </div>
