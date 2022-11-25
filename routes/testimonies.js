@@ -20,12 +20,14 @@ router.post('/add', isAuthUser, async (req, res) => {
 
     try {
         await Testimony.create(testimonyData)
+        
+        req.flash('success', 'Testimony added successfully!')
+        res.redirect('/profile')
+
     } catch (err) {
-        res.render('errors/500')
         console.error(err)
+        res.render('errors/500')
     }
-    req.flash('success', 'Testimony added successfully!')
-    res.redirect('/profile')
 })
 
 
@@ -34,12 +36,46 @@ router.post('/add', isAuthUser, async (req, res) => {
 router.delete('/:id', isAuthUser, async (req, res) => {
     try {
         await Testimony.remove({ _id: req.params.id })
+        
+        req.flash('success', 'Testimony deleted successfully!')
+        res.redirect('/profile')
+    
     } catch (err) {
-        res.render('errors/500')
         console.error(err)
+        res.render('errors/500')
     }
-    req.flash('success', 'Testimony deleted successfully!')
-    res.redirect('/profile')
+})
+
+// @desc    Editting a testimony
+// @route   PUT /testimony/:id
+router.put('/:id', isAuthUser, async (req, res) => {
+    try {
+        let testimony = await Testimony.findById(req.params.id).exec()
+
+        if (!testimony){
+            return res.render('errors/404')
+        }
+
+        if (String(testimony.user) != String(req.user._id)){
+            res.redirect('/profile')
+        }else{
+            await Testimony.findOneAndUpdate(
+                { _id: req.params.id },
+                req.body,
+                {
+                    new: true,
+                    runValidators: true
+                }
+            )
+
+            req.flash('success', 'Testimony editted successfully!')
+            res.redirect('/profile')
+        }
+
+    } catch (err) {
+        console.error(err)
+        res.render('errors/500')
+    }
 })
 
 
