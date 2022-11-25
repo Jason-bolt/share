@@ -37,4 +37,4 @@ If you intend on adding testimonies to the platform, you must first register, na
 <br />
 <br />
 
-The systemm is still in development
+The project is still in development at the moment.
