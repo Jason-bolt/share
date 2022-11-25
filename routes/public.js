@@ -11,6 +11,8 @@ const { isAuthUser, isNotAuthUser } = require('../middleware/auth')
 router.get('/', isNotAuthUser, async (req, res) => {
     try {
         const testimonies = await Testimonies.find()
+        .populate('user')
+        .lean()
         res.render('index',
         {
             testimonies: testimonies
