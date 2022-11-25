@@ -8,8 +8,17 @@ const { isAuthUser, isNotAuthUser } = require('../middleware/auth')
 
 // @desc    Index page
 // @route   GET /
-router.get('/', isNotAuthUser, (req, res) => {
-    res.render('index')
+router.get('/', isNotAuthUser, async (req, res) => {
+    try {
+        const testimonies = await Testimonies.find()
+        res.render('index',
+        {
+            testimonies: testimonies
+        })
+    } catch (err) {
+        res.render('errors/500')
+        console.error(err)
+    }
 })
 
 // @desc    Registration page
@@ -33,11 +42,12 @@ router.post('/register', isNotAuthUser, async (req, res) => {
         res.redirect('/register')
     }
 
-    // Hash password and create user
-    hashed_password = await bcrypt.hash(req.body.password, 10)
-
-    // Enter user data to database
+    
     try {
+        // Hash password and create user
+        hashed_password = await bcrypt.hash(req.body.password, 10)
+        
+        // Enter user data to database
         // Check if user already exists
         const user = await User.findOne({name: req.body.name})
         if (user){
@@ -54,6 +64,7 @@ router.post('/register', isNotAuthUser, async (req, res) => {
         }
     } catch (err) {
         console.error(err)
+        res.render('errors/500')
     }
 })
 
@@ -78,14 +89,19 @@ router.get('/testimonies', isAuthUser, async (req, res) => {
         profile: false
     }
 
-    const testimonies = await Testimonies.find({ user: req.user._id })
-    .populate('user')
-    .lean()
+    try {
+        const testimonies = await Testimonies.find()
+        .populate('user')
+        .lean()
 
-    res.render('auth/testimonies', {
-        page: page,
-        testimonies: testimonies
-    })
+        res.render('auth/testimonies', {
+            page: page,
+            testimonies: testimonies
+        })  
+    } catch (err) {
+        console.error(err)
+        res.render('errors/500')
+    }    
 })
 
 // @desc    Profile page
@@ -96,17 +112,23 @@ router.get('/profile', isAuthUser, async (req, res) => {
         profile: true
     }
 
-    const testimonies = await Testimonies.find({ user: req.user._id })
-    .populate('user')
-    .lean()
-    
-    res.render('auth/profile', {
-        page: page,
-        user_name: req.user.name,
-        user_email: req.user.email,
-        user_id: req.user._id,
-        testimonies: testimonies
-    })
+    try {
+        const testimonies = await Testimonies.find({ user: req.user._id })
+        .populate('user')
+        .lean()
+        
+        res.render('auth/profile', {
+            page: page,
+            user_name: req.user.name,
+            user_email: req.user.email,
+            user_id: req.user._id,
+            testimonies: testimonies
+        })     
+    } catch (err) {
+        console.error(err)
+        res.render('errors/500')
+    }
+
 })
 
 // @desc    Edit profile
@@ -122,8 +144,8 @@ router.put('/profile/edit/:id', isAuthUser, async (req, res) => {
             }
         )
     } catch (err) {
-        res.render('errors/500')
         console.error(err)
+        res.render('errors/500')
     }
     
     page = {
