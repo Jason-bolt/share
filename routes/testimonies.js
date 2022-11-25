@@ -4,7 +4,7 @@ const Testimony = require('../models/Testimony.ts')
 const { isAuthUser } = require('../middleware/auth')
 
 
-// @desc    Submitting submitting testimony
+// @desc    Submitting a testimony
 // @route   POST /testimony/add
 router.post('/add', isAuthUser, async (req, res) => {
     console.log(req.body)
@@ -29,8 +29,8 @@ router.post('/add', isAuthUser, async (req, res) => {
 })
 
 
-// @desc    Submitting submitting testimony
-// @route   POST /testimony/add
+// @desc    Deleting a testimony
+// @route   DELETE /testimony/:id
 router.delete('/:id', isAuthUser, async (req, res) => {
     try {
         await Testimony.remove({ _id: req.params.id })

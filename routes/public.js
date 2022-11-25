@@ -72,14 +72,19 @@ failureFlash: 'Invalid username or password!'
 
 // @desc    All testimonies
 // @route   GET /testimonies
-router.get('/testimonies', isAuthUser, (req, res) => {
+router.get('/testimonies', isAuthUser, async (req, res) => {
     page = {
         testimonies: true,
         profile: false
     }
-    
+
+    const testimonies = await Testimonies.find({ user: req.user._id })
+    .populate('user')
+    .lean()
+
     res.render('auth/testimonies', {
-        page: page
+        page: page,
+        testimonies: testimonies
     })
 })
 
