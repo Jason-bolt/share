@@ -13,8 +13,15 @@ router.get('/', isNotAuthUser, async (req, res) => {
         const testimonies = await Testimonies.find()
         .populate('user')
         .lean()
+
+        const page = {
+            testimonies: true,
+            login: false
+        }
+
         res.render('index',
         {
+            page: page,
             testimonies: testimonies
         })
     } catch (err) {
@@ -73,7 +80,15 @@ router.post('/register', isNotAuthUser, async (req, res) => {
 // @desc    Login page
 // @route   GET /login
 router.get('/login', isNotAuthUser, (req, res) => {
-    res.render('login')
+    const page = {
+        testimonies: false,
+        login: true
+    }
+
+    res.render('login',
+    {
+        page: page
+    })
 })
 
 // @desc    User login
