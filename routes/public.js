@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcrypt')
 const User = require('../models/User.ts')
-const Testimonies = require('../models/Testimony.ts')
+const Testimony = require('../models/Testimony.ts')
 const passport = require('passport')
 const { isAuthUser, isNotAuthUser } = require('../middleware/auth')
 
@@ -10,7 +10,7 @@ const { isAuthUser, isNotAuthUser } = require('../middleware/auth')
 // @route   GET /
 router.get('/', isNotAuthUser, async (req, res) => {
     try {
-        const testimonies = await Testimonies.find()
+        const testimonies = await Testimony.find()
         .populate('user')
         .lean()
 
@@ -25,9 +25,30 @@ router.get('/', isNotAuthUser, async (req, res) => {
             testimonies: testimonies
         })
     } catch (err) {
-        res.render('errors/500')
         console.error(err)
+        res.render('errors/500')
     }
+})
+
+// @desc    Searching for testimonies
+// @route   post/search
+router.post('/search', async (req, res) => {
+    let search = req.body.query.trim()
+    try {
+        const testimonies = await Testimony.find({tags: { $in: ['*.'+search+'.*'] } })
+        .populate('user')
+        .lean()
+        console.log(testimonies)
+        
+        // res.render('search', {
+        //     testimonies: testimonies
+        // })
+
+    } catch (err) {
+        console.error(err)
+        res.render('errors/500')
+    }
+
 })
 
 // @desc    Registration page
@@ -107,7 +128,7 @@ router.get('/testimonies', isAuthUser, async (req, res) => {
     }
 
     try {
-        const testimonies = await Testimonies.find()
+        const testimonies = await Testimony.find()
         .populate('user')
         .lean()
 
@@ -130,7 +151,7 @@ router.get('/profile', isAuthUser, async (req, res) => {
     }
 
     try {
-        const testimonies = await Testimonies.find({ user: req.user._id })
+        const testimonies = await Testimony.find({ user: req.user._id })
         .populate('user')
         .lean()
         

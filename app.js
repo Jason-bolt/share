@@ -35,6 +35,7 @@ app.use(methodOverride('_method'))
 
 // Parse body
 app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
 
 // Session middleware
 app.use(session({
