@@ -84,6 +84,8 @@ app.use('/', publicRoute)
 app.use('/error', errorRoute)
 app.use('/testimony', testimonyRoute)
 
-PORT = process.env.PORT || 3000
+const port = 3000
+
+PORT = process.env.PORT || port
 
 app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))
