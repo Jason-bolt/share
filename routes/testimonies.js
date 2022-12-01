@@ -8,9 +8,14 @@ const { isAuthUser } = require('../middleware/auth')
 // @route   POST /testimony/add
 router.post('/add', isAuthUser, async (req, res) => {
     console.log(req.body)
-    const testimony = req.body.testimony
+    const testimony = req.body.testimony.trim()
     const tags = req.body.tags
     const user = req.user._id
+
+    if (testimony == ''){
+        req.flash('error', 'Testimony field cannot be left blank!')
+        res.redirect('/profile')
+    }
 
     const testimonyData = {
         testimony: testimony,
