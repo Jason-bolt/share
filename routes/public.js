@@ -79,7 +79,7 @@ router.post('/register', isNotAuthUser, async (req, res) => {
         
         // Enter user data to database
         // Check if user already exists
-        const user = await User.findOne({name: req.body.name})
+        const user = await User.findOne({name: req.body.email})
         if (user){
             req.flash('error_message', 'User already exists!')
             res.redirect('/register')
