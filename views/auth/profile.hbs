@@ -145,13 +145,16 @@
                         </label>                        
                         
                         <select name="tags" class="tags rounded border border-gray-300 focus:border-violet-800" multiple>
-                            <option value="Faithful">Healing</option>
-                            <option value="Gracious">Mercy</option>
-                            <option value="Provider">Providence</option>
-                            <option value="Provider">Salvation</option>
-                            <option value="Provider">Love</option>
-                            <option value="Provider">Forgiveness</option>
-                            <option value="Provider">Trust</option>
+                            {{!-- <option value="Faithful">Faithful</option>
+                            <option value="Gracious">Gracious</option>
+                            <option value="Provider">Provider</option> --}}
+                            <option value="Healing">Healing</option>
+                            <option value="Mercy">Mercy</option>
+                            <option value="Providence">Providence</option>
+                            <option value="Salvation">Salvation</option>
+                            <option value="Love">Love</option>
+                            <option value="Forgiveness">Forgiveness</option>
+                            <option value="Trust">Trust</option>
                         </select>
                         
                     </div>
@@ -245,9 +248,13 @@
                                             Tags 
                                         </label>        
                                         <select name="tags" class="tags rounded border border-gray-300 focus:border-violet-800" multiple>
-                                            <option value="Faithful" {{selectIncluded "Faithful" tags}}>Faithful</option>
-                                            <option value="Gracious" {{selectIncluded "Gracious" tags}}>Gracious</option>
-                                            <option value="Provider" {{selectIncluded "Provider" tags}}>Provider</option>
+                                            <option value="Healing" {{selectIncluded "Healing" tags}}>Healing</option>
+                                            <option value="Mercy" {{selectIncluded "Mercy" tags}}>Mercy</option>
+                                            <option value="Providence" {{selectIncluded "Providence" tags}}>Providence</option>
+                                            <option value="Salvation" {{selectIncluded "Salvation" tags}}>Salvation</option>
+                                            <option value="Love" {{selectIncluded "Love" tags}}>Love</option>
+                                            <option value="Forgiveness" {{selectIncluded "Forgiveness" tags}}>Forgiveness</option>
+                                            <option value="Trust" {{selectIncluded "Trust" tags}}>Trust</option>
                                         </select>
                                         
                                     </div>
