@@ -84,6 +84,12 @@ app.use('/', publicRoute)
 app.use('/error', errorRoute)
 app.use('/testimony', testimonyRoute)
 
+// @desc    Page not found
+// @route   GET /*
+app.get('*', (req, res) => {
+    res.render('errors/404')
+})
+
 const port = 3000
 
 PORT = process.env.PORT || port
